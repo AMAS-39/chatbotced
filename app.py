@@ -5,7 +5,6 @@ from datetime import datetime
 from dotenv import load_dotenv
 import sqlite3
 from datetime import datetime
-from knowledge_base import encode_knowledge_base
 from sentence_transformers import SentenceTransformer
 
 knowledge_base_embeddings = encode_knowledge_base()
@@ -803,7 +802,6 @@ def index():
 
 # Modified ask_claude route to include database integration
 # app.py
-from knowledge_base import encode_knowledge_base
 
 # Initialize the knowledge base embeddings
 
