@@ -5,10 +5,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 import sqlite3
 from datetime import datetime
-from sentence_transformers import SentenceTransformer
 
-knowledge_base_embeddings = encode_knowledge_base()
-model = SentenceTransformer('all-MiniLM-L6-v2')
 
 
 
