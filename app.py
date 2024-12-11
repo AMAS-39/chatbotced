@@ -822,22 +822,14 @@ def ask_claude():
             }
             return jsonify({"response": error_messages[language]}), 400
 
-        # Encode the user's question
-        question_embedding = model.encode([question])[0]
-
-        # Use the RAG model to retrieve relevant information
-        rag_response = client.create_chat_completion(
-            model="claude-v1-rag",
+        # Create message for Claude
+        response = client.messages.create(
+            model="claude-3-sonnet-20240229",
             max_tokens=1024,
-            messages=[
-                {"role": "user", "content": question}
-            ],
-            knowledge_base=knowledge_base_embeddings,
-            query_embedding=question_embedding
+            messages=[{"role": "user", "content": question}]
         )
 
-        # Combine the RAG-retrieved information with the language model's generation
-        final_response = f"{rag_response.choices[0].message.content}\n\n{response.content[0].text}"
+        final_response = response.content[0].text
 
         # Save the message to the database
         save_message(question, final_response, language, None, None)
