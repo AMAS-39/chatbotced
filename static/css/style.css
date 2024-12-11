@@ -1,0 +1,242 @@
+:root {
+    --primary: #8B4513;
+    --secondary: #D2691E;
+    --accent: #FFD700;
+    --bg-primary: #ffffff;
+    --text-primary: #000000;
+    --chat-bg: #f0f0f0;
+    --chat-text: #000000;
+}
+
+body.dark {
+    --bg-primary: #1a1a1a;
+    --text-primary: #ffffff;
+    --chat-bg: #2d2d2d;
+    --chat-text: #ffffff;
+}
+
+/* Layout and General Styles */
+body {
+    transition: background-color 0.3s ease;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Message Styles */
+.message-wrapper {
+    display: flex;
+    margin: 1rem 0;
+    animation: fadeIn 0.3s ease-in-out;
+    width: 100%;
+}
+
+.message {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+    margin: 0.5rem 0;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.user-message-wrapper {
+    justify-content: flex-end;
+}
+
+.bot-message-wrapper {
+    justify-content: flex-start;
+}
+
+.user-message {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 1rem 1rem 0 1rem;
+    margin-left: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bot-message {
+    background-color: var(--chat-bg);
+    color: var(--chat-text);
+    border-radius: 1rem 1rem 1rem 0;
+    margin-right: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* RTL Support */
+.rtl .user-message {
+    border-radius: 1rem 1rem 1rem 0;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.rtl .bot-message {
+    border-radius: 1rem 1rem 0 1rem;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* Language Specific Styles */
+.kurdish, .arabic {
+    font-family: 'Noto Sans Arabic', Arial, sans-serif;
+}
+
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl .fa-paper-plane {
+    transform: scaleX(-1);
+}
+
+/* Dropdown Styles */
+select {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid currentColor;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+select option {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 0.5rem;
+}
+
+.dark select option {
+    background-color: #2d2d2d;
+    color: white;
+}
+
+/* Loading Animation */
+.loading-dots {
+    display: inline-block;
+    position: relative;
+}
+
+.loading-dots::after {
+    content: '...';
+    animation: loading 1.5s infinite;
+    display: inline-block;
+    width: 1.5em;
+}
+
+@keyframes loading {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+
+/* Scrollbar Styles */
+#messages-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+#messages-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messages-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#messages-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 3px;
+}
+
+/* Chat Input Styles */
+textarea {
+    resize: none;
+    min-height: 50px;
+    max-height: 200px;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+}
+
+/* Button Styles */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .message {
+        max-width: 90%;
+    }
+    
+    .container {
+        padding: 0.5rem;
+    }
+    
+    h1 {
+        font-size: 1.25rem;
+    }
+    
+    select {
+        padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .message {
+        max-width: 95%;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Dark Mode Transitions */
+.transition-colors {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease;
+}
+
+/* Focus States */
+*:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
